@@ -1,7 +1,7 @@
 {
   "name": "@petitkit/utils",
   "author": "@petitssoldats",
-  "version": "0.0.42",
+  "version": "0.0.01",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
@@ -19,6 +19,7 @@
   "description": "",
   "devDependencies": {
     "terser": "^5.40.0",
-    "tsup": "^8.5.0"
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
   }
 }
