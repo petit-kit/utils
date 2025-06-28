@@ -1,8 +1,26 @@
 {
-  "name": "@petitkit/utils",
-  "author": "@petitssoldats",
-  "version": "0.0.01",
+  "name": "@petit-kit/utils",
+  "homepage": "https://github.com/petit-kit/utils",
+  "bugs": {
+    "url": "https://github.com/petit-kit/utils/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/petit-kit/utils"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "@petitssoldats",
+    "email": "hello@nicolasforestier.dev",
+    "url": "https://nicolasforestier.dev"
+  },
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/petitssoldats"
+  },
+  "version": "0.0.04",
   "type": "module",
+  "private": false,
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +33,6 @@
     "build": "tsup --minify terser",
     "prepublishOnly": "npm run build"
   },
-  "license": "ISC",
   "description": "",
   "devDependencies": {
     "terser": "^5.40.0",

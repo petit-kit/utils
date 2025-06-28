@@ -9,7 +9,6 @@
     "sourceMap": true,                           // Emit source maps
     "outDir": "dist",                            // Output directory
     "rootDir": "src",                            // Your source files
-    "composite": true,                           // Enables project references (for monorepos)
     "strict": true,                              // Enable all strict type-checking options
     "noUnusedLocals": true,
     "noUnusedParameters": true,

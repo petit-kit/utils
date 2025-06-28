@@ -32,7 +32,9 @@ import {
   debounce,
   throttle,
   sum,
-  sumObject
+  sumObject,
+  deepEqual,
+  forEach
 } from '@petitkit/utils';
 ```
 
@@ -367,6 +369,65 @@ const cssString = objectToStyle(styles);
 
 **Returns:** CSS style string
 
+#### `deepEqual(a, b)`
+
+Performs deep equality comparison between two values, including nested objects and arrays.
+
+```javascript
+// Simple values
+deepEqual(5, 5); // true
+deepEqual('hello', 'hello'); // true
+deepEqual(5, '5'); // false
+
+// Objects
+deepEqual({ a: 1, b: 2 }, { a: 1, b: 2 }); // true
+deepEqual({ a: 1, b: 2 }, { b: 2, a: 1 }); // true (order doesn't matter)
+deepEqual({ a: 1, b: 2 }, { a: 1, b: 3 }); // false
+
+// Arrays
+deepEqual([1, 2, 3], [1, 2, 3]); // true
+deepEqual([1, 2, 3], [1, 3, 2]); // false (order matters for arrays)
+
+// Nested structures
+deepEqual({ a: [1, 2], b: { c: 3 } }, { a: [1, 2], b: { c: 3 } }); // true
+```
+
+**Parameters:**
+- `a` (any): First value to compare
+- `b` (any): Second value to compare
+
+**Returns:** Boolean indicating if the values are deeply equal
+
+#### `forEach(collection, callback)`
+
+Iterates over arrays or objects, executing a callback function for each element.
+
+```javascript
+// Array iteration
+const numbers = [1, 2, 3, 4, 5];
+forEach(numbers, (value, index, array) => {
+  console.log(`Index ${index}: ${value}`);
+});
+
+// Object iteration
+const person = { name: 'John', age: 30, city: 'NYC' };
+forEach(person, (value, key, object) => {
+  console.log(`${key}: ${value}`);
+});
+
+// Early termination (forEach doesn't support break, but you can return early)
+forEach(numbers, (value, index) => {
+  if (value > 3) return; // Skip remaining iterations
+  console.log(value);
+});
+```
+
+**Parameters:**
+- `collection` (any[] | object): Array or object to iterate over
+- `callback` (function): Function to execute for each element
+  - For arrays: `callback(value, index, array)`
+  - For objects: `callback(value, key, object)`
+
 ## Common Use Cases
 
 ### Animation and Easing
@@ -436,6 +497,16 @@ const colors: string = mergeRGB('rgb(255,0,0)', 'rgb(0,255,0)', 0.5);
 interface Item { value: number; }
 const items: Item[] = [{ value: 1 }, { value: 5 }];
 const maxValue: number = max(items, item => item.value);
+
+// Deep equality with type safety
+const isEqual: boolean = deepEqual({ a: 1, b: 2 }, { a: 1, b: 2 });
+
+// Type-safe iteration
+interface User { name: string; age: number; }
+const users: User[] = [{ name: 'John', age: 30 }, { name: 'Jane', age: 25 }];
+forEach(users, (user: User, index: number) => {
+  console.log(`${index}: ${user.name} is ${user.age}`);
+});
 ```
 
 ## Browser Support

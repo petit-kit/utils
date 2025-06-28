@@ -157,6 +157,28 @@ const objectToStyle = (object: Record<string, any>) => {
     .join(";");
 };
 
+const deepEqual = (a: any, b: any): boolean =>
+  a === b
+    ? true
+    : a && b && typeof a === "object" && typeof b === "object"
+    ? Object.keys(a).length === Object.keys(b).length &&
+      Object.keys(a).every((k) => k in b && deepEqual(a[k], b[k]))
+    : false;
+
+const forEach = (collection: any, callback: Function) => {
+  if (Array.isArray(collection)) {
+    for (let i = 0, len = collection.length; i < len; i++) {
+      callback(collection[i], i, collection);
+    }
+  } else if (collection && typeof collection === "object") {
+    for (const key in collection) {
+      if (Object.prototype.hasOwnProperty.call(collection, key)) {
+        callback(collection[key], key, collection);
+      }
+    }
+  }
+};
+
 export {
   mapRange,
   mapRangeClamp,
@@ -179,4 +201,6 @@ export {
   numFixedX,
   stopPropagation,
   objectToStyle,
+  deepEqual,
+  forEach,
 };
